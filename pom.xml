@@ -1,0 +1,75 @@
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>me.dslztx</groupId>
+    <artifactId>acm-java</artifactId>
+    <version>1.0.0</version>
+    <packaging>jar</packaging>
+
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+        <me.dslztx.junit.version>5.9.3</me.dslztx.junit.version>
+        <me.dslztx.lombok.version>1.18.22</me.dslztx.lombok.version>
+
+        <plugin-compiler.version>3.0</plugin-compiler.version>
+        <plugin-compiler.compile.encoding>UTF-8</plugin-compiler.compile.encoding>
+        <plugin-compiler.compile.source.version>1.8</plugin-compiler.compile.source.version>
+        <plugin-compiler.compile.target.version>1.8</plugin-compiler.compile.target.version>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>${me.dslztx.lombok.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <version>${me.dslztx.junit.version}</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${plugin-compiler.version}</version>
+                <executions>
+                    <execution>
+                        <id>default-testCompile</id>
+                        <phase>test-compile</phase>
+                        <goals>
+                            <goal>testCompile</goal>
+                        </goals>
+                        <configuration>
+                            <encoding>${plugin-compiler.compile.encoding}</encoding>
+                            <source>${plugin-compiler.compile.source.version}</source>
+                            <target>${plugin-compiler.compile.target.version}</target>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>default-compile</id>
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>compile</goal>
+                        </goals>
+                        <configuration>
+                            <encoding>${plugin-compiler.compile.encoding}</encoding>
+                            <source>${plugin-compiler.compile.source.version}</source>
+                            <target>${plugin-compiler.compile.target.version}</target>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>
