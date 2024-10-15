@@ -1,7 +1,13 @@
 package me.dslztx.dp;
 
 /**
- * 最长公共子序列
+ * 最长公共子序列<br/>
+ * 
+ * 有序列m和n，dp[i][j]表示："m到第i个元素为止的子序列"和"n到第j个元素为止的子序列"两者的最长公共子序列长度<br/>
+ * 
+ * 状态转移方程为：<br/>
+ * 1）m[i-1]=n[j-1]，dp[i][j]=dp[i-1][j-1]+1 <br/>
+ * 2）m[i-1]!=n[j-1]，dp[i][j]=max(dp[i][j-1],dp[i-1][j])
  */
 public class LCS {
 
