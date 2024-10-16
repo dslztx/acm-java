@@ -24,4 +24,39 @@ class LeastEditingDistanceTest {
             Assertions.fail();
         }
     }
+
+
+    @Test
+    public void test1() {
+        try {
+            char[] s = "horse".toCharArray();
+            char[] e = "ros".toCharArray();
+
+            LeastEditingDistance leastEditingDistance = new LeastEditingDistance(s, e);
+            leastEditingDistance.buildDP();
+
+            Assertions.assertTrue(leastEditingDistance.obtainLeastEditingDistanceValue() == 3);
+
+        } catch (Exception e) {
+            log.error("", e);
+            Assertions.fail();
+        }
+    }
+
+    @Test
+    public void test2() {
+        try {
+            char[] s = "intention".toCharArray();
+            char[] e = "execution".toCharArray();
+
+            LeastEditingDistance leastEditingDistance = new LeastEditingDistance(s, e);
+            leastEditingDistance.buildDP();
+
+            Assertions.assertTrue(leastEditingDistance.obtainLeastEditingDistanceValue() == 5);
+
+        } catch (Exception e) {
+            log.error("", e);
+            Assertions.fail();
+        }
+    }
 }
