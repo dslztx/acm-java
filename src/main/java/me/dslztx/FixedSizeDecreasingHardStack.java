@@ -5,37 +5,35 @@ package me.dslztx;
  */
 public class FixedSizeDecreasingHardStack {
 
-    int stackSize;
+    int size;
 
     int[] data;
 
-    int pos = -1;
+    int pos;
 
     public FixedSizeDecreasingHardStack(int size) {
-        this.stackSize = size;
+        this.size = size;
 
-        data = new int[size];
+        this.pos = 0;
+
+        this.data = new int[size];
     }
 
-    public void push(int value, int leftElementLen) {
-        if (pos == -1) {
-            data[++pos] = value;
+    public void push(int value, int leftLen) {
+        if (pos == 0) {
+            //栈初始情况
+            data[pos++] = value;
         } else {
-            if (value <= data[pos]) {
-                if (pos < stackSize - 1) {
-                    data[++pos] = value;
-                }
-                // 否则直接丢弃这个值
-            } else {
-                // 最多还可以弹出几个元素：结合栈中已有元素 + 余下leftElementLen元素两方面考虑，尽量能填满栈的stackSize
-                int cnt = leftElementLen + pos + 1 - stackSize;
+            // 最多还可以弹出几个元素：结合栈中已有元素 + 余下leftLen元素两方面考虑，尽量能填满栈的size
+            int allowPop = pos + leftLen - size;
+            while (pos > 0 && data[pos - 1] < value && allowPop > 0) {
+                pos--;
+                allowPop--;
+            }
 
-                while (pos != -1 && value > data[pos] && cnt > 0) {
-                    pos--;
-                    cnt--;
-                }
-
-                data[++pos] = value;
+            // 走到这里该弹出的已经弹完了，实在放不下直接废弃，分为几种情况：1）发生过弹出行为，那么必然可以放下；2）否则看还有没有空余空间
+            if (pos < size) {
+                data[pos++] = value;
             }
         }
     }
