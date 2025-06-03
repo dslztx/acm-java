@@ -2,26 +2,26 @@ package me.dslztx.trie;
 
 import java.util.*;
 
-public class Node<V> {
+public class TrieNode<V> {
 
-    private Map<Character, Node<V>> childrenMap;
+    private Map<Character, TrieNode<V>> childrenMap;
 
     private List<V> valueList;
 
-    public Node<V> addChildNode(Character c) {
+    public TrieNode<V> addChildNode(Character c) {
         if (childrenMap == null) {
             childrenMap = new HashMap<>();
         }
 
         if (childrenMap.get(c) == null) {
-            Node<V> node = new Node<V>();
-            childrenMap.put(c, node);
+            TrieNode<V> trieNode = new TrieNode<V>();
+            childrenMap.put(c, trieNode);
         }
 
         return childrenMap.get(c);
     }
 
-    public Node<V> findChildNode(Character c) {
+    public TrieNode<V> findChildNode(Character c) {
         if (childrenMap == null) {
             return null;
         }

@@ -5,14 +5,14 @@ import java.util.List;
 
 public class Trie<V> {
 
-    Node<V> root = new Node<V>();
+    TrieNode<V> root = new TrieNode<V>();
 
     public void addPath(char[] charArray, V value) {
-        if (charArray == null) {
+        if (charArray == null || charArray.length == 0) {
             return;
         }
 
-        Node<V> parent = root;
+        TrieNode<V> parent = root;
         for (char c : charArray) {
             parent = parent.addChildNode(c);
         }
@@ -24,11 +24,11 @@ public class Trie<V> {
 
         List<V> result = new ArrayList<>();
 
-        if (charArray == null) {
+        if (charArray == null || charArray.length == 0) {
             return result;
         }
 
-        Node<V> parent = root;
+        TrieNode<V> parent = root;
 
         for (char c : charArray) {
 
